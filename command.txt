@@ -1,0 +1,13 @@
+1.multiple proccess set:
+
+export GMON_OUT_PREFIX=gmon.out
+so file format gmon.out.pid
+
+2. gcc -pg file.c -o a.out
+
+/* -g when compelet */
+step 1:gcc -g -c file.c -o file.o
+
+/* -p when linked */
+step 2:gcc -p    file.o -o a.out
+
