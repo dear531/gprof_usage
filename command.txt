@@ -11,3 +11,78 @@ step 1:gcc -g -c file.c -o file.o
 /* -p when linked */
 step 2:gcc -p    file.o -o a.out
 
+[root@zhangly gprof_demo]# ls
+command.txt  loop.c  main.c  oprofile.c
+[root@zhangly gprof_demo]# gcc -pg -g loop.c 
+[root@zhangly gprof_demo]# ./a.out 
+j :100000000
+j :200000000
+j :300000000
+j :400000000
+j :500000000
+j :600000000
+j :700000000
+j :800000000
+j :900000000
+j :1000000000
+j :1100000000
+j :1200000000
+j :1300000000
+j :1400000000
+j :1500000000
+j :1600000000
+j :1700000000
+j :1800000000
+j :1900000000
+j :2000000000
+j :2100000000
+j :-2100000000
+j :-2000000000
+j :-1900000000
+j :-1800000000
+j :-1700000000
+j :-1600000000
+j :-1500000000
+j :-1400000000
+j :-1300000000
+j :-1200000000
+j :-1100000000
+j :-1000000000
+j :-900000000
+j :-800000000
+j :-700000000
+j :-600000000
+j :-500000000
+j :-400000000
+j :-300000000
+j :-200000000
+j :-100000000
+j :-1
+[root@zhangly gprof_demo]# gprof a.out gmon.out -b
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 99.21     20.03    20.03        1    20.03    20.03  sub
+
+
+                        Call graph
+
+
+granularity: each sample hit covers 2 byte(s) for 0.05% of 20.03 seconds
+
+index % time    self  children    called     name
+               20.03    0.00       1/1           main [2]
+[1]    100.0   20.03    0.00       1         sub [1]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]    100.0    0.00   20.03                 main [2]
+               20.03    0.00       1/1           sub [1]
+-----------------------------------------------
+
+
+Index by function name
+
+   [1] sub
+
